@@ -97,8 +97,9 @@ class ChatterboxTokenizer(json: String) {
         for (op in preOps) {
             parts = parts.flatMap { p ->
                 when (op.optString("type")) {
-                    "Whitespace" -> Regex("(?U)\\w+|[^\\w\\s]+").findAll(p).map { it.value }.toList()
-                    "WhitespaceSplit" -> p.split(Regex("(?U)\\s+")).filter { it.isNotEmpty() }
+                    "Whitespace" -> Regex("[\\p{L}\\p{N}\\p{M}_]+|[^\\p{L}\\p{N}\\p{M}_\\s]+")
+                        .findAll(p).map { it.value }.toList()
+                    "WhitespaceSplit" -> p.split(Regex("\\s+")).filter { it.isNotEmpty() }
                     "Split" -> {
                         val pat = op.getJSONObject("pattern")
                         val re = if (pat.has("String")) Regex(Regex.escape(pat.getString("String")))
