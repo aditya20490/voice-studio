@@ -12,8 +12,8 @@ android {
         applicationId = "com.voicestudio.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = 2
+        versionName = "0.2"
     }
 
     compileOptions {
@@ -34,4 +34,5 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.09.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.22.0")
 }
