@@ -73,7 +73,7 @@ fun App() {
             when (tab) {
                 0 -> VoicesTab(voices) { id -> store.delete(id); voices = store.list() }
                 1 -> CreateTab(store) { voices = store.list(); tab = 0 }
-                else -> SpeakTab()
+                else -> SpeakTab(voices)
             }
         }
     }
@@ -212,15 +212,5 @@ fun CreateTab(store: VoiceStore, onSaved: () -> Unit) {
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Save voice") }
         }
-    }
-}
-
-@Composable
-fun SpeakTab() {
-    Box(Modifier.fillMaxSize().padding(24.dp)) {
-        Text(
-            "Text to speech comes in the next step. This first version only records, imports " +
-                "and saves your voices, so we can confirm the app builds and installs on your phone."
-        )
     }
 }
